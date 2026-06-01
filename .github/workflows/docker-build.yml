@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t shreyasdocker01/product-service:latest .
+          docker build -t shreyasdocker01/product-service:latest -f services/product-service/Dockerfile services/product-service/
 
       - name: Push Docker Image
         run: |
