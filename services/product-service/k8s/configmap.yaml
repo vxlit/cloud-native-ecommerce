@@ -5,6 +5,6 @@ metadata:
   name: product-config
 
 data:
-  DB_HOST: host.docker.internal
+  DB_HOST: postgres-service
   DB_NAME: ecommerce
   DB_PORT: "5432"

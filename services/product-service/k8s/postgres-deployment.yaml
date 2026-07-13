@@ -18,28 +18,33 @@ spec:
 
     spec:
       containers:
-      - name: postgres
+        - name: postgres
+          image: postgres:15
 
-        image: postgres:15
+          ports:
+            - containerPort: 5432
 
-        ports:
-        - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
 
-        env:
-        - name: POSTGRES_USER
-          value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
 
-        - name: POSTGRES_PASSWORD
-          value: shreyas
+            - name: POSTGRES_DB
+              value: ecommerce
 
-        - name: POSTGRES_DB
-          value: ecommerce
-
-        volumeMounts:
-        - name: postgres-storage
-          mountPath: /var/lib/postgresql/data
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
 
       volumes:
-      - name: postgres-storage
-        persistentVolumeClaim:
-          claimName: postgres-pvc
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
