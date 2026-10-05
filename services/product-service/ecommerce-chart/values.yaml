@@ -49,12 +49,12 @@ resources:
 
 livenessProbe:
   httpGet:
-    path: /health
+    path: /
     port: 8000
 
 readinessProbe:
   httpGet:
-    path: /health
+    path: /
     port: 8000
 
 autoscaling:
